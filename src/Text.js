@@ -1,8 +1,8 @@
 class Text {
   #changes = [];
 
-  constructor(respacer, caseConverter, text) {
-    this.text = text;
+  constructor(respacer, caseConverter) {
+    this.text = '';
     this.respacer = respacer;
     this.caseConverter = caseConverter;
   }
@@ -15,6 +15,16 @@ class Text {
       'from': from,
       'to': this.text
     });
+  }
+
+  #resetChanges() {
+    this.#changes = [];
+  }
+
+  setText(text) {
+    this.text = text
+    this.#resetChanges();
+    return this;
   }
 
   //spaces
@@ -58,7 +68,7 @@ class Text {
     this.#stackChange(this.caseConverter.toPascal)
     return this
   }
-  
+
   //snake_case
   toSnake() {
     this.#stackChange(this.caseConverter.toSnake)

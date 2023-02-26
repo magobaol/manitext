@@ -10,12 +10,32 @@ beforeEach(() => {
 });
 
 describe('Text', () => {
+
+  describe('setText', () => {
+    it('should set the text to work on', () => {
+      let t = new Text(Respacer, CaseConverter)
+
+      t.setText('hello');
+      expect(t.getText()).toBe('hello')
+    })
+
+    it('should reset changes', () => {
+      let t = new Text(Respacer, CaseConverter)
+
+      t.setText('hello').toUpper();
+      expect(t.getChanges().length).toBe(1)
+
+      t.setText('world');
+      expect(t.getChanges().length).toBe(0)
+    })
+  })
+
   describe('#toSpace', () => {
     it('should respace a text', () => {
       Respacer.toSpace = jest.fn().mockReturnValue('hello world')
-      let t = new Text(Respacer, CaseConverter, 'hello-world')
+      let t = new Text(Respacer, CaseConverter)
 
-      t.toSpace();
+      t.setText('hello-world').toSpace();
       expect(Respacer.toSpace.mock.calls[0][0]).toBe('hello-world')
       expect(t.getText()).toBe('hello world');
       expect(t.getChanges().length).toBe(1);
@@ -28,9 +48,9 @@ describe('Text', () => {
   describe('#toUpper', () => {
     it('should UPPER a text', () => {
       CaseConverter.toUpper = jest.fn().mockReturnValue('HELLO WORLD')
-      let t = new Text(Respacer, CaseConverter, 'hello-world')
+      let t = new Text(Respacer, CaseConverter)
 
-      t.toUpper();
+      t.setText('hello-world').toUpper();
       expect(CaseConverter.toUpper.mock.calls[0][0]).toBe('hello-world')
       expect(t.getText()).toBe('HELLO WORLD');
       expect(t.getChanges().length).toBe(1);
@@ -43,9 +63,9 @@ describe('Text', () => {
   describe('#toLower', () => {
     it('should lower a text', () => {
       CaseConverter.toLower = jest.fn().mockReturnValue('hello world')
-      let t = new Text(Respacer, CaseConverter, 'hello-world')
+      let t = new Text(Respacer, CaseConverter)
 
-      t.toLower();
+      t.setText('hello-world').toLower();
 
       expect(CaseConverter.toLower.mock.calls[0][0]).toBe('hello-world')
       expect(t.getText()).toBe('hello world');
@@ -59,9 +79,9 @@ describe('Text', () => {
   describe('#toTitle', () => {
     it('should Title Case a text', () => {
       CaseConverter.toTitle = jest.fn().mockReturnValue('Hello World')
-      let t = new Text(Respacer, CaseConverter, 'hello-world')
+      let t = new Text(Respacer, CaseConverter)
 
-      t.toTitle();
+      t.setText('hello-world').toTitle();
 
       expect(CaseConverter.toTitle.mock.calls[0][0]).toBe('hello-world')
       expect(t.getText()).toBe('Hello World');
@@ -75,9 +95,9 @@ describe('Text', () => {
   describe('#toSentence', () => {
     it('should Sentence case a text', () => {
       CaseConverter.toSentence = jest.fn().mockReturnValue('Hello world')
-      let t = new Text(Respacer, CaseConverter, 'hello-world')
+      let t = new Text(Respacer, CaseConverter)
 
-      t.toSentence();
+      t.setText('hello-world').toSentence();
 
       expect(CaseConverter.toSentence.mock.calls[0][0]).toBe('hello-world')
       expect(t.getText()).toBe('Hello world');
@@ -91,9 +111,9 @@ describe('Text', () => {
   describe('#toCamel', () => {
     it('should camelCase a text', () => {
       CaseConverter.toCamel = jest.fn().mockReturnValue('helloWorld')
-      let t = new Text(Respacer, CaseConverter, 'hello-world')
+      let t = new Text(Respacer, CaseConverter)
 
-      t.toCamel();
+      t.setText('hello-world').toCamel();
 
       expect(CaseConverter.toCamel.mock.calls[0][0]).toBe('hello-world')
       expect(t.getText()).toBe('helloWorld');
@@ -107,9 +127,9 @@ describe('Text', () => {
   describe('#toPascal', () => {
     it('should PascalCase a text', () => {
       CaseConverter.toPascal = jest.fn().mockReturnValue('HelloWorld')
-      let t = new Text(Respacer, CaseConverter, 'hello-world')
+      let t = new Text(Respacer, CaseConverter)
 
-      t.toPascal();
+      t.setText('hello-world').toPascal();
 
       expect(CaseConverter.toPascal.mock.calls[0][0]).toBe('hello-world')
       expect(t.getText()).toBe('HelloWorld');
@@ -123,9 +143,9 @@ describe('Text', () => {
   describe('#toSnake', () => {
     it('should snake_case a text', () => {
       CaseConverter.toSnake = jest.fn().mockReturnValue('hello_world')
-      let t = new Text(Respacer, CaseConverter, 'hello-world')
+      let t = new Text(Respacer, CaseConverter)
 
-      t.toSnake();
+      t.setText('hello-world').toSnake();
 
       expect(CaseConverter.toSnake.mock.calls[0][0]).toBe('hello-world')
       expect(t.getText()).toBe('hello_world');
@@ -139,9 +159,9 @@ describe('Text', () => {
   describe('#toSpinal', () => {
     it('should spinal-case a text', () => {
       CaseConverter.toSpinal = jest.fn().mockReturnValue('hello-world')
-      let t = new Text(Respacer, CaseConverter, 'hello world')
+      let t = new Text(Respacer, CaseConverter)
 
-      t.toSpinal();
+      t.setText('hello world').toSpinal();
 
       expect(CaseConverter.toSpinal.mock.calls[0][0]).toBe('hello world')
       expect(t.getText()).toBe('hello-world');

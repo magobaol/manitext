@@ -26,58 +26,58 @@ let text = new Text(Respacer, CaseConverter, program.args[0]);
 const results = {
     items: [
         {
-            title: text.toSpace().getText(),
+            title: text.setText(program.args[0]).toSpace().getText(),
             subtitle: "Normally spaced",
             uid: "spaced",
-            arg: text.toSpace().getText()
+            arg: text.setText(program.args[0]).toSpace().getText()
         },
         {
-            title: text.toUpper().getText(),
+            title: text.setText(program.args[0]).toUpper().getText(),
             subtitle: "UPPERCASE",
             uid: "uppercase",
-            arg: text.toUpper().getText()
+            arg: text.setText(program.args[0]).toUpper().getText()
         },
         {
-            title: text.toLower().getText(),
+            title: text.setText(program.args[0]).toLower().getText(),
             subtitle: "lowercase",
             uid: "lowercase",
-            arg: text.toLower().getText()
+            arg: text.setText(program.args[0]).toLower().getText()
         },
         {
-            title: text.toTitle().getText(),
+            title: text.setText(program.args[0]).toTitle().getText(),
             subtitle: "Title Case",
             uid: "titlecase",
-            arg: text.toTitle().getText()
+            arg: text.setText(program.args[0]).toTitle().getText()
         },
         {
-            title: text.toSentence().getText(),
+            title: text.setText(program.args[0]).toSentence().getText(),
             subtitle: "Sentence case",
             uid: "sentencecase",
-            arg: text.toSentence().getText()
+            arg: text.setText(program.args[0]).toSentence().getText()
         },
         {
-            title: text.toCamel().getText(),
+            title: text.setText(program.args[0]).toCamel().getText(),
             subtitle: "camelCase",
             uid: "camcelcase",
-            arg: text.toCamel().getText()
+            arg: text.setText(program.args[0]).toCamel().getText()
         },
         {
-            title: text.toPascal().getText(),
+            title: text.setText(program.args[0]).toPascal().getText(),
             subtitle: "PascalCase",
             uid: "pascalcase",
-            arg: text.toPascal().getText()
+            arg: text.setText(program.args[0]).toPascal().getText()
         },
         {
-            title: text.toSnake().getText(),
+            title: text.setText(program.args[0]).toSnake().getText(),
             subtitle: "snake_case",
             uid: "snakecase",
-            arg: text.toSnake().getText()
+            arg: text.setText(program.args[0]).toSnake().getText()
         },
         {
-            title: text.toSpinal().getText(),
+            title: text.setText(program.args[0]).toSpinal().getText(),
             subtitle: "spinal-case",
             uid: "spinalcase",
-            arg: text.toSpinal().getText()
+            arg: text.setText(program.args[0]).toSpinal().getText()
         }
     ]
 }

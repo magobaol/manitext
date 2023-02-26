@@ -4,9 +4,10 @@ const CaseConverter = require('../src/TextTools/CaseConverter')
 
 describe('chaining transformations', () => {
   it('should chain', () => {
-    let t = new Text(Respacer, CaseConverter, 'helloWorld')
+    let t = new Text(Respacer, CaseConverter)
 
-    t.toSpace()
+    t.setText('helloWorld')
+      .toSpace()
       .toUpper()
       .toLower()
       .toTitle()
