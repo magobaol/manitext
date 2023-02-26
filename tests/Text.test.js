@@ -30,6 +30,19 @@ describe('Text', () => {
     })
   })
 
+  describe('getLastOperation', () => {
+    it('should return the last operation applied to text', () => {
+      let t = new Text(Respacer, CaseConverter)
+
+      t.setText('hello')
+        .toUpper()
+        .toLower();
+
+      let lastOp = t.getLastOperation();
+      expect(lastOp.operation).toBe('toLower');
+    })
+  })
+
   describe('#toSpace', () => {
     it('should respace a text', () => {
       Respacer.toSpace = jest.fn().mockReturnValue('hello world')
@@ -171,5 +184,6 @@ describe('Text', () => {
       expect(t.getChanges()[0].to).toBe('hello-world');
     })
   })
-  
+
+
 });

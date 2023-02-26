@@ -89,6 +89,61 @@ class Text {
     return this.text
   }
 
+  getLastOperation() {
+    return this.#changes[this.#changes.length-1];
+  }
+
+  getAlfredItem() {
+    let lastOp = this.getLastOperation()
+    let subtitle = ''
+    let uid = ''
+    switch (lastOp.operation) {
+      case 'toSpace':
+        subtitle = 'Normally spaced'
+        uid = 'spaced'
+        break
+      case 'toUpper':
+        subtitle = 'UPPER CASE'
+        uid = 'uppercase'
+        break
+      case 'toLower':
+        subtitle = 'lower case'
+        uid = 'lowercase'
+        break
+      case 'toTitle':
+        subtitle = 'Title Case'
+        uid = 'titlecase'
+        break
+      case 'toSentence':
+        subtitle = 'Sentence case'
+        uid = 'sentencecase'
+        break
+      case 'toCamel':
+        subtitle = 'camelCase'
+        uid = 'camelcase'
+        break
+      case 'toPascal':
+        subtitle = 'PascalCase'
+        uid = 'pascalcase'
+        break
+      case 'toSnake':
+        subtitle = 'snake_case'
+        uid = 'snakecase'
+        break
+      case 'toSpinal':
+        subtitle = 'spinal-case'
+        uid = 'spinalcase'
+        break
+    }
+    return {
+      title: lastOp.to,
+      arg: lastOp.to,
+      uid: uid,
+      subtitle: subtitle
+    }
+
+  }
+
 }
 
 

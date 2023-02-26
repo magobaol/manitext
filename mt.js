@@ -9,76 +9,65 @@ const { Command, Option } = require('commander');
 const program = new Command();
 
 program
-    .name('manitext')
-    .version('1.0.0')
-    .description('Manipulate text in input')
-    .argument('<string>', 'Text to manipulate')
-    .addOption(
-        new Option('-cc, --convert-case <string>', 'Convert case').choices(['upper', 'lower'])
-    )
-    
+  .name('manitext')
+  .version('1.0.0')
+  .description('Manipulate text in input')
+  .argument('<string>', 'Text to manipulate')
+  .addOption(
+    new Option('-cc, --convert-case <string>', 'Convert case').choices(['space', 'upper', 'lower', 'title', 'sentence', 'camel', 'pascal', 'snake', 'spinal'])
+  )
+
 program.parse();
 
 const options = program.opts();
 
 let text = new Text(Respacer, CaseConverter, program.args[0]);
-
-const results = {
+let results = {}
+if (options.convertCase) {
+  let item = '';
+  switch (options.convertCase) {
+    case 'space':
+      item = text.setText(program.args[0]).toSpace().getText()
+      break;
+    case 'upper':
+      item = text.setText(program.args[0]).toUpper().getText()
+      break;
+    case 'lower':
+      item = text.setText(program.args[0]).toLower().getText()
+      break;
+    case 'title':
+      item = text.setText(program.args[0]).toTitle().getText()
+      break;
+    case 'sentence':
+      item = text.setText(program.args[0]).toSentence().getText()
+      break;
+    case 'camel':
+      item = text.setText(program.args[0]).toCamel().getText()
+      break;
+    case 'pascal':
+      item = text.setText(program.args[0]).toPascal().getText()
+      break;
+    case 'snake':
+      item = text.setText(program.args[0]).toSnake().getText()
+      break;
+    case 'spinal':
+      item = text.setText(program.args[0]).toSpinal().getText()
+      break;
+  }
+  process.stdout.write(item)
+} else {
+  results = {
     items: [
-        {
-            title: text.setText(program.args[0]).toSpace().getText(),
-            subtitle: "Normally spaced",
-            uid: "spaced",
-            arg: text.setText(program.args[0]).toSpace().getText()
-        },
-        {
-            title: text.setText(program.args[0]).toUpper().getText(),
-            subtitle: "UPPERCASE",
-            uid: "uppercase",
-            arg: text.setText(program.args[0]).toUpper().getText()
-        },
-        {
-            title: text.setText(program.args[0]).toLower().getText(),
-            subtitle: "lowercase",
-            uid: "lowercase",
-            arg: text.setText(program.args[0]).toLower().getText()
-        },
-        {
-            title: text.setText(program.args[0]).toTitle().getText(),
-            subtitle: "Title Case",
-            uid: "titlecase",
-            arg: text.setText(program.args[0]).toTitle().getText()
-        },
-        {
-            title: text.setText(program.args[0]).toSentence().getText(),
-            subtitle: "Sentence case",
-            uid: "sentencecase",
-            arg: text.setText(program.args[0]).toSentence().getText()
-        },
-        {
-            title: text.setText(program.args[0]).toCamel().getText(),
-            subtitle: "camelCase",
-            uid: "camcelcase",
-            arg: text.setText(program.args[0]).toCamel().getText()
-        },
-        {
-            title: text.setText(program.args[0]).toPascal().getText(),
-            subtitle: "PascalCase",
-            uid: "pascalcase",
-            arg: text.setText(program.args[0]).toPascal().getText()
-        },
-        {
-            title: text.setText(program.args[0]).toSnake().getText(),
-            subtitle: "snake_case",
-            uid: "snakecase",
-            arg: text.setText(program.args[0]).toSnake().getText()
-        },
-        {
-            title: text.setText(program.args[0]).toSpinal().getText(),
-            subtitle: "spinal-case",
-            uid: "spinalcase",
-            arg: text.setText(program.args[0]).toSpinal().getText()
-        }
+      text.setText(program.args[0]).toSpace().getAlfredItem(),
+      text.setText(program.args[0]).toUpper().getAlfredItem(),
+      text.setText(program.args[0]).toLower().getAlfredItem(),
+      text.setText(program.args[0]).toTitle().getAlfredItem(),
+      text.setText(program.args[0]).toSentence().getAlfredItem(),
+      text.setText(program.args[0]).toCamel().getAlfredItem(),
+      text.setText(program.args[0]).toPascal().getAlfredItem(),
+      text.setText(program.args[0]).toSnake().getAlfredItem(),
+      text.setText(program.args[0]).toSpinal().getAlfredItem(),
     ]
+  }
+  process.stdout.write(JSON.stringify(results))
 }
-console.log(JSON.stringify(results))
