@@ -23,7 +23,6 @@ class Text {
     return this
   }
 
-
   //UPPERCASE
   toUpper() {
     this.#stackChange(this.caseConverter.toUpper)
@@ -48,21 +47,18 @@ class Text {
     return this
   }
 
-
   //camel-case
   toCamel() {
     this.#stackChange(this.caseConverter.toCamel)
     return this
   }
 
-
   //PascalCase
   toPascal() {
     this.#stackChange(this.caseConverter.toPascal)
     return this
   }
-
-
+  
   //snake_case
   toSnake() {
     this.#stackChange(this.caseConverter.toSnake)
