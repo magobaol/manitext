@@ -1,3 +1,5 @@
+import * as caseConverters from './caseConverters'
+
 class Text {
   #changes = [];
 
@@ -35,7 +37,7 @@ class Text {
 
   //UPPERCASE
   toUpper() {
-    this.#stackChange(this.caseConverter.toUpper)
+    this.#stackChange(caseConverters.toUpper)
     return this
   }
 
